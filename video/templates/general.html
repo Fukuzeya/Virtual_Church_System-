@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Church Conference</title>
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'vid/css/main.css' %}"/> -->
+    <link rel='stylesheet' type='text/css' media='screen' href='{% static "styles/main.css" %}'>
+</head>
+<body style="background-color:rgb(20, 118, 87) ;">
+    <div class="form-field">
+        <label id="label-username">Name</label>
+        <input type="text" id="username" style="width: 150px;" name="room" placeholder="Enter username..."/>
+    </div>
+    <div class="form-field">
+        <input  id="btn-join" style="width: 150px;" type="submit"  value="Join Room">
+    </div>
+
+    <!-- main wrapper -->
+    <main>
+        <section id="room-name-wrapper">
+            <p>Room Name: General Service</p>
+        </section>
+        Member: {{group.first_name}} {{group.last_name}} | Commission: {{group.commission}}
+        <div id="video-streams">
+
+            <div class="video-container" id="user-container-1">
+                <div class="video-player" id="user-1">
+                    <div id="video-container">
+                        <div>
+                            <video id="local-video" style="float:left;" autoplay playsinline></video>
+                        </div>
+                    </div>
+                    <section id="controls-wrapper">
+                        <!-- <div class="icon-wrapper"> -->
+                            <button id="btn-toggle-audio"> <img class="control-icon" id="mic-btn" src="{% static 'images/microphone.svg' %}" /></button>
+                        <!-- </div> -->
+            
+                        <!-- <div class="icon-wrapper"> -->
+                            <button id="btn-toggle-video"><img class="control-icon" id="camera-btn" src="{% static 'images/video.svg' %}" /></button>
+                        <!-- </div> -->
+
+                    </section>
+                    <!-- Chat -->
+                    <div class="form-field">
+                        <label>Name</label>
+                        <input type="text" id="msg" name="room" placeholder="Enter message."/>
+                    </div>
+    
+                    <div class="form-field">
+                        <input type="submit" id="btn-send-msg"  value="Send Message">
+                    </div>
+                    <div id="chat">
+                        <h3>Chat</h3>
+                        <div id="messages">
+                            <ul id="message-list">
+                            </ul>
+                        </div>  
+                        <a href="/"><img class="control-icon" id="leave-btn" src="{% static 'images/leave.svg' %}" /></a>                     
+                    </div>
+
+                    <!-- end chat -->
+                </div> 
+            </div>
+
+        </div>
+    </main>
+
+
+
+    <div class="main-grid-container">
+        <!-- <div id="video-container">
+            <div><video id="local-video" style="float: left;" autoplay playsinline></video></div>
+            <button id="btn-toggle-audio">Audio Mute</button>
+            <button id="btn-toggle-video">Video Mute</button>
+        </div> -->
+        
+    </div>
+    <script type="text/javascript" src="{% static 'vid/js/main.js' %} "></script>
+</body>
+</html>

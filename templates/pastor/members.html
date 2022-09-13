@@ -1,0 +1,98 @@
+{% extends "./pastor-base.html" %}
+{% load static %}
+{% block body %}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card-style mb-30">
+            <h6 class="mb-10">All Registered Members</h6>
+            <!-- <div style="text-align: end;">
+                <a href="{% url 'management:member_registration' %}" class="status-btn active-btn">Add New</a>
+            </div> -->
+            <div class="table-wrapper table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <h6>#</h6>
+                            </th>
+                            <th>
+                                <h6>First Name</h6>
+                            </th>
+                            <th>
+                                <h6>Last name</h6>
+                            </th>
+                            <th>
+                                <h6>Contact</h6>
+                            </th>
+                            <th>
+                                <h6>Sex</h6>
+                            </th>
+                            <th>
+                                <h6>Commission</h6>
+                            </th>
+                            <th>
+                                <h6>Status</h6>
+                            </th>
+                            <th>
+                                <h6>Action</h6>
+                            </th>
+                        </tr>
+                        <!-- end table row-->
+                    </thead>
+                    <tbody>
+                        {% for member in members %}
+                        <tr>
+                            
+                            <th scope="row">{{forloop.counter}}</th>
+                            
+                            <td class="min-width">
+                                <p>{{member.first_name}}</p>
+                            </td>
+                            <td class="min-width">
+                                <p>{{member.last_name}}</p>
+                            </td>
+                            <td class="min-width">
+                                <p>{{member.contact}}</p>
+                            </td>
+                            <td class="min-width">
+                                <p>{{member.gender}}</p>
+                            </td>
+                            <td class="min-width">
+                                <p>{{member.commission}}</p>
+                            </td>
+                            {% if member.status%}
+                            <td class="min-width">
+                                <span class="status-btn active-btn">Active</span>
+                            </td>
+                            {% else%}
+                            <td class="min-width">
+                                <span class="status-btn close-btn">Blocked</span>
+                            </td>
+                            {% endif %}
+                            
+                            <!-- <td>
+                                <div class="action">
+                                    <a href="{% url 'management:member_delete' member.id %}" class="text-danger">
+                                        <i class="lni lni-trash-can"></i>
+                                    </button>
+                                    <a href="{% url 'management:member_update' member.id %}" class="trigger Free">
+                                        <i class="lni lni-pencil"></i>
+                                    </a>
+                                </div>
+                            </td> -->
+                        </tr>
+                        {% empty %}
+                        <h4>No members available.</h4>
+                        {% endfor %}
+                        <!-- end table row -->
+                    </tbody>
+                </table>
+                <!-- end table -->
+            </div>
+        </div>
+        <!-- end card -->
+    </div>
+    <!-- end col -->
+</div>
+<!-- end row -->
+{% endblock body %}

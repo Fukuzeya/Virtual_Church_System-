@@ -1,0 +1,103 @@
+{% extends "./commission-base.html" %}
+{% load static %}
+{% block body %}
+<form class="form-elements-wrapper" method="post" action="" enctype="multipart/form-data"> {% csrf_token %}
+    <div class="row">
+        {% if form.errors %}
+        <p class="alert alert-danger">Please correct the following errors:</p>
+        {% for field in form %}
+        {% if field.errors %}
+        <div class="alert alert-box danger-alert" role="alert">
+            {{ field.label }}: {{ field.errors|striptags }}
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        <div class="col-lg-6">
+            <!-- input style start -->
+            <div class="card-style mb-30">
+                <h6 class="mb-25">Personal Information</h6>
+                <div class="input-style-1">
+                    <label>First Name:</label>
+                    {{form.first_name}}
+                </div>
+                <!-- end input -->
+                <div class="input-style-1">
+                    <label>Last Name:</label>
+                    {{form.last_name}}
+                </div>
+                <!-- end input -->
+                <div class="input-style-1">
+                    <label>National ID:</label>
+                    {{form.national_id}}
+                </div>
+                <!-- end input -->
+                <div class="input-style-1">
+                    <label>Contact Number:</label>
+                    {{form.contact}}
+                </div>
+                <div class="input-style-1">
+                    <label>Email Address:</label>
+                    {{form.email}}
+                </div>
+                <!-- end input -->
+                <div class="select-style-2">
+                    <div class="select-position">
+                        <label>Gender:</label>
+                        {{form.gender}}
+                    </div>
+                </div>
+                <!-- end input -->
+            </div>
+            <!-- end card -->
+        </div>
+        <!--end of first col-6-->
+        <div class="col-lg-6">
+            <!-- input style start -->
+            <div class="card-style mb-30">
+                <h6 class="mb-25">Church Information</h6>
+                <div class="select-style-2">
+                    <div class="select-position">
+                        <label>Commission:</label>
+                        {{form.commission}}
+                    </div>
+                </div>
+                <!-- end input -->
+                <div class="input-style-1">
+                    <label>Occupition:</label>
+                    {{form.occupation}}
+                </div>
+                <!-- end input -->
+                <div class="select-style-2">
+                    <div class="select-position">
+                        <label>Leadership Position:</label>
+                        {{form.leadership_position}}
+                    </div>
+                </div>
+                <!-- end input -->
+                <div class="select-style-2">
+                    <div class="select-position">
+                        <label>Location:</label>
+                        {{form.location}}
+                    </div>
+                </div>
+                <!-- end input -->
+                <div class="select-style-2">
+                    <div class="select-position">
+                        <label>Marital Status:</label>
+                        {{form.marital_status}}
+                    </div>
+                </div>
+                <!-- end input -->
+            </div>
+            <!-- end card -->
+        </div>
+       <div class="row">
+           <div class="col-5"></div>
+           <div class="col-5">
+                <button type="submit" class="main-btn primary-btn rounded-md btn-hover text-center">Add Member</button>
+           </div>
+       </div>
+    </div>
+</form>
+{% endblock body %}

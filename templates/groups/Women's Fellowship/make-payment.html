@@ -1,0 +1,57 @@
+{% extends "./base.html" %}
+{% load static %}
+{% block body %}
+<link rel='stylesheet' type='text/css' media='screen' href='{% static "styles/main.css" %}'>
+<main>
+    <section id="form-container" style="margin-top: 50px; text-align: center; border-radius: 5%;">
+
+        <div id="welcome-message">
+            <h1>Payment Form</h1>
+        </div>
+        {% if form.errors %}
+        <p class="alert alert-warning">Please correct the following errors:</p>
+        {% for field in form %}
+        {% if field.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ field.label }}: {{ field.errors|striptags }}
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+
+        {% if messages %}
+                        {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                        <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% if message.tags == 'success' %}
+                        <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% endfor %}
+                      {% endif %}
+
+        <form id="form" method="post"> {% csrf_token %}
+            <div class="form-field">
+                <label>Payment Type </label>
+                {{form.payment_type}}
+            </div>
+
+            <div class="form-field">
+                <label>Amount Paid</label>
+                {{form.amount_paid}}
+            </div>
+            <div class="form-field">
+                <label>Ecocash Number:</label>
+                {{form.transaction_number}}
+            </div>
+
+            <div class="form-field">
+                <button type="submit"> <img src="{% static 'paynow.png' %}" alt=""></button>
+            </div>
+        </form>
+    </section>
+</main>
+
+
+
+{% endblock body %}

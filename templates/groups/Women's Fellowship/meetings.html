@@ -1,0 +1,83 @@
+{% extends "./base.html" %}
+{% load static %}
+{% block body %}
+{% if member.is_leader %}
+<a href="{% url 'dashboard:schedule_meeting' %}" class="status-btn active-btn" style="text-align: end ;">Add Meeting</a>
+{% endif %}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card-style mb-30">
+            <h6 class="mb-10">Private Meetings</h6>
+            <div class="table-wrapper table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <h6>#</h6>
+                            </th>
+                            <th>
+                                <h6>Title</h6>
+                            </th>
+                            <th>
+                                <h6>Date</h6>
+                            </th>
+                            <th>
+                                <h6>Time</h6>
+                            </th>
+                            <th>
+                                <h6>Time Left</h6>
+                            </th>
+
+                        </tr>
+                        <!-- end table row-->
+                    </thead>
+                    <tbody>
+                        {% for meeting in meetings %}
+                        <tr>
+                            
+                            <th scope="row">{{forloop.counter}}</th>
+                            
+                            <td class="min-width">
+                                <p>{{meeting.meeting_title}}</p>
+                            </td>
+                            <td class="min-width">
+                                <p>{{meeting.date}}</p>
+                            </td>
+                            <td class="min-width">
+                                <p>{{meeting.time}}</p>
+                            </td>
+                            <td class="min-width">
+                                <p>{{meeting.date | timeuntil}}</p>
+                            </td>
+                            
+                            {% if meeting.date_has_passed %}
+                            <td class="min-width">
+                                <span class="status-btn close-btn">Passed</span>
+                            </td>
+                            {% else%}
+                            <td class="min-width">
+                                <span class="status-btn active-btn">Waiting...</span>
+                            </td>
+                            {% endif %}
+                           
+                            <td>
+                                <a href="{% url 'video:main' %}" class="status-btn active-btn" style="text-align: end ;">Join Meeting</a>
+                            </td>
+                            
+                            
+                        </tr>
+                        {% empty %}
+                        <h4>No meetings scheduled yet</h4>
+                        {% endfor %}
+                        <!-- end table row -->
+                    </tbody>
+                </table>
+                <!-- end table -->
+            </div>
+        </div>
+        <!-- end card -->
+    </div>
+    <!-- end col -->
+</div>
+<!-- end row -->
+{% endblock body %}

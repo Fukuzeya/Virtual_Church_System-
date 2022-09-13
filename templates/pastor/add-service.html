@@ -1,0 +1,57 @@
+{% extends "./pastor-base.html" %}
+{% load static %}
+{% block body %}
+<link rel='stylesheet' type='text/css' media='screen' href='{% static "styles/main.css" %}'>
+<main>
+    <section id="form-container" style="margin-top: 50px; text-align: center;">
+
+        <div id="welcome-message">
+            <h1>Add Church service</h1>
+        </div>
+        {% if form.errors %}
+        <p class="alert alert-warning">Please correct the following errors:</p>
+        {% for field in form %}
+        {% if field.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ field.label }}: {{ field.errors|striptags }}
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+
+        {% if messages %}
+                        {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                        <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% if message.tags == 'success' %}
+                        <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% endfor %}
+                      {% endif %}
+
+        <form id="form" method="post"> {% csrf_token %}
+            <div class="form-field">
+                <label>Service Theme</label>
+                {{form.service_theme}}
+            </div>
+
+            <div class="form-field">
+                <label>Meeting Date:</label>
+                {{form.date}}
+            </div>
+            <div class="form-field">
+                <label>Meeting Time:</label>
+                {{form.time}}
+            </div>
+
+            <div class="form-field">
+                <input type="submit"  value="Add Service">
+            </div>
+        </form>
+    </section>
+</main>
+
+
+
+{% endblock body %}

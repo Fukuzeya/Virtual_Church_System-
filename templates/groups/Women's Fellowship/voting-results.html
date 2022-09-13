@@ -1,0 +1,84 @@
+{% extends "./base.html" %}
+{% load static %}
+{% block body %}
+{% if messages %}
+{% for message in messages %}
+{% if message.tags == 'error' %}
+<div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+{% endif %}
+{% if message.tags == 'success' %}
+<div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+{% endif %}
+{% endfor %}
+{% endif %}
+<div class="col-lg-12">
+    <div class="card-style mb-30">
+      <div
+        class="
+          title
+          d-flex
+          flex-wrap
+          justify-content-between
+          align-items-center
+        "
+      >
+        <div class="left">
+          <h6 class="text-medium mb-30">Voting Results</h6>
+        </div>
+      
+      </div>
+      <!-- End Title -->
+      <div class="table-responsive">
+        <table class="table top-selling-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>
+                <h6 class="text-sm text-medium">Commission</h6>
+              </th>
+              <th class="min-width">
+                <h6 class="text-sm text-medium">Votes</h6>
+              </th>
+              <th class="min-width">
+                <h6 class="text-sm text-medium">Winner</h6>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for candidate in candidates %}
+            <tr>
+              <td>
+                <div class="product">
+                  <div class="image p-10">
+                    <img
+                      src="{{candidate.profile.url}}"
+                      alt=""
+                    />
+                  </div>
+                  <p class="text-sm">{{candidate.candidate}}</p>
+                </div>
+              </td>
+              <td>
+                <p class="text-sm">{{candidate.commission}}</p>
+              </td>
+              <td>
+                {{candidate.votes}}
+              </td>
+              {% if candidate.has_won %}
+              <td>
+                <h5 class="btn btn-success">Winner</h5>
+              </td>
+              {% endif %}
+            </tr>
+            {% empty %}
+            <p>No candidate registered yet.</p>
+            {% endfor%}
+          </tbody>
+        </table>
+        <!-- End Table -->
+      </div>
+    </div>
+  </div>
+  <!-- End Col -->
+
+{% endblock body %}

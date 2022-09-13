@@ -1,0 +1,138 @@
+{% extends "./base.html" %}
+{% load static %}
+{% block body %}
+<!-- ========== title-wrapper end ========== -->
+<div class="row">
+    <div class="col-xl-3 col-lg-4 col-sm-6">
+      <div class="icon-card mb-30 mt-2">
+        <div class="icon purple">
+          <i class="lni lni-cart-full"></i>
+        </div>
+        <div class="content">
+          <h6 class="mb-10">Group Members</h6>
+          <h3 class="text-bold mb-10">{{group}}</h3>
+          <p class="text-sm text-success">
+            
+          </p>
+        </div>
+      </div>
+      <!-- End Icon Cart -->
+    </div>
+    <!-- End Col -->
+    <div class="col-xl-3 col-lg-4 col-sm-6">
+      <div class="icon-card mb-30 mt-2">
+        <div class="icon success">
+          <i class="lni lni-dollar"></i>
+        </div>
+        <div class="content">
+          <h6 class="mb-10">My Payments</h6>
+          <h3 class="text-bold mb-10">${{balance}}</h3>
+          
+        </div>
+      </div>
+      <!-- End Icon Cart -->
+    </div>
+    <!-- End Col -->
+    <div class="col-xl-3 col-lg-4 col-sm-6">
+      <div class="icon-card mb-30 mt-2">
+        <div class="icon primary">
+          <i class="lni lni-credit-cards"></i>
+        </div>
+        <div class="content">
+          <h6 class="mb-10">Pledge Bal</h6>
+          <h3 class="text-bold mb-10">$80.00</h3>
+          
+        </div>
+      </div>
+      <!-- End Icon Cart -->
+    </div>
+    <!-- End Col -->
+    <div class="col-xl-3 col-lg-4 col-sm-6">
+      <div class="icon-card mb-30 mt-2">
+        <div class="icon orange">
+          <i class="lni lni-user"></i>
+        </div>
+        <div class="content">
+          <h6 class="mb-10">Church Members</h6>
+          <h3 class="text-bold mb-10">{{members}}</h3>
+          
+        </div>
+      </div>
+      <!-- End Icon Cart -->
+    </div>
+    <!-- End Col -->
+  </div>
+  <!-- End Row -->
+  <div class="row">
+    <div class="col-lg-7">
+      <div class="card-style">
+        <div class="title d-flex flex-wrap justify-content-between">
+          <div class="left mb-4">
+            <h6 class="text-medium">{{user.first_name}} {{user.last_name}}</h6>
+          </div>
+        </div>
+        <hr>
+        <div class="title d-flex flex-wrap justify-content-between">
+            <div class="left mb-4">
+              <h6 class="text-bold">{{user.national_id}}</h6>
+            </div>
+        
+        </div>
+        <hr>
+        <!-- end -->
+        <div class="title d-flex flex-wrap justify-content-between">
+            <div class="left mb-4">
+              <h6 class="text-medium">Contact Number {{user.contact}}</h6>
+            </div>
+        </div>
+        <hr>
+        <div class="title d-flex flex-wrap justify-content-between">
+            <div class="left mb-4">
+              <h6 class="text-medium">Gender: {{user.gender}}</h6>
+            </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+    <!-- End Col -->
+    <div class="col-lg-5">
+      <div class="card-style mb-30">
+        <div
+          class="
+            title
+            d-flex
+            flex-wrap
+            align-items-center
+            justify-content-between
+          "
+        >
+          <div class="left mb-4">
+            <h6 class="text-medium">Commission: {{user.commission}}</h6>
+          </div>
+          <hr>
+          <div class="left mb-4">
+            <h6 class="text-medium">Occupation: {{user.occupation}}</h6>
+          </div>
+          <hr>
+          <div class="left mb-4">
+            <h6 class="text-medium">Position: {{user.leadership_position}}</h6>
+          </div>
+          <hr>
+          <br>
+          <div class="left mb-4">
+            <h6 class="text-medium">Location: {{user.location}}</h6>
+          </div>
+          <hr>
+          <div class="left mb-4">
+            <h6 class="text-medium">Status: {{user.status}}</h6>
+          </div>
+          <hr>
+        </div>
+        
+      </div>
+    </div>
+    <!-- End Col -->
+  </div>
+  <!-- End Row -->
+
+{% endblock body %}

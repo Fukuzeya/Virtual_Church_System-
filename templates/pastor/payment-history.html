@@ -1,0 +1,84 @@
+{% extends "./pastor-base.html" %}
+{% load static %}
+{% block body %}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card-style mb-30">
+            <h6 class="mb-10">My payment history</h6>
+            <div style="text-align: end;">
+                <a href="{% url 'payment:pastor_ecocash' %}" class="btn btn-primary"> Make Payment</a>
+            </div>
+            <div class="table-wrapper table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <h6>#</h6>
+                            </th>
+                            <th>
+                                <h6>Member</h6>
+                            </th>
+                            <th>
+                                <h6>Commission</h6>
+                            </th>
+                            <th>
+                                <h6>Payment type</h6>
+                            </th>
+                            <th>
+                                <h6>Payment Method</h6>
+                            </th>
+                            <th>
+                                <h6>Amount Paid</h6>
+                            </th>
+                            <th>
+                                <h6>Transaction Number</h6>
+                            </th>
+                            <th>
+                                <h6>Date</h6>
+                            </th>
+                        </tr>
+                        <!-- end table row-->
+                    </thead>
+                    <tbody>
+                        {% for transaction in transactions %}
+                        <tr>
+                            
+                            <th scope="row">{{forloop.counter}}</th>
+                            
+                            <td class="min-width">
+                                <p>{{transaction.member.first_name}} {{transaction.member.last_name}}</p>
+                            </td>
+                            <td class="min-width">
+                                <p>{{transaction.member.commission}}</p>
+                            </td>
+                            <td class="min-width">
+                                <p>{{transaction.payment_type}}</p>
+                            </td>
+                            <td class="min-width">
+                                <p>Ecocash</p>
+                            </td>
+                            <td class="min-width">
+                                <p>{{transaction.amount_paid}}</p>
+                            </td>
+                            <td class="min-width">
+                                <p>{{transaction.transaction_number}}</p>
+                            </td>
+                            <td class="min-width">
+                                <p>{{transaction.transaction_date}}</p>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <h4>No transaction made yet.</h4>
+                        {% endfor %}
+                        <!-- end table row -->
+                    </tbody>
+                </table>
+                <!-- end table -->
+            </div>
+        </div>
+        <!-- end card -->
+    </div>
+    <!-- end col -->
+</div>
+<!-- end row -->
+{% endblock body %}
